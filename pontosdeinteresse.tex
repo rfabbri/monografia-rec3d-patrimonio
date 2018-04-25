@@ -1,6 +1,7 @@
+\doublespacing
 \chapter{Reconstrução 3D passiva}\label{cap:pontosdeinteresse}
 %======================================================================================
-%
+\doublespacing
 \section{Introdução}
 
 A maioria dos métodos de reconstrução 3D robusta de estrutura por movimento, ou \emph{Structure
@@ -12,7 +13,7 @@ realiza reconstruções esparsas de nuvens de pontos, e é seguida de abordagens
 \emph{Multi-View Stereo} (MVS) para obtenção de informação 3D mais completa.  O
 pipeline SfM+MVS funciona com os seguintes passos, ilustrados na Figura~\ref{fig:sfmpipeline}:
 
-\begin{itemize}
+\begin{itemize}[leftmargin=2.5cm]
 \item{Aquisição de imagens;}
 \item{Estimação dos parâmetros de câmera para cada imagem;}
 \item{Reconstrução da geometria 3D de uma cena em diversos níveis de detalhe.}
@@ -21,13 +22,13 @@ pipeline SfM+MVS funciona com os seguintes passos, ilustrados na Figura~\ref{fig
 \begin{figure}[!h]
 	\centering
 	\caption{Procedimento da maioria dos sistemas SfM}
-	\includegraphics[width=\linewidth]{figs/pipelinesfm.png}
-	\caption{% 
+	\includegraphics[width=0.98\linewidth]{figs/pipelinesfm.png}
+	\note{% 
 	Além dessas etapas, geralmente a reconstrução é densificada usando-se MVS.
 	}
 	\source{
-	 \citeauthor{theia-manual}
-   	 (\citeyear{theia-manual}).
+	 \citeauthor{theia-manual},
+   	 \citeyear{theia-manual}.
    }
    \label{fig:sfmpipeline}
 \end{figure}
@@ -59,15 +60,17 @@ imagem~\ref{fig:Sift}) em cada imagem~\cite{Lowe:IJCV2004}.
 	\includegraphics[width=0.3\linewidth]{figs/SIFTsapo.jpg}
 	\includegraphics[width=0.3\linewidth]{figs/SIFTsapo2.jpg}
 	\legend{Cada linha pode ser interpretada como uma correspondência encontrada entre as duas imagens.}
-	\source{O autor
-			(2017)
+	\source{O autor,
+			2017
 			}
 	\label{fig:Sift}
 \end{figure}
 
-O algoritmo pode ser dividido em cinco etapas:
+\newpage
 
-\begin{itemize}
+\noindent O algoritmo pode ser dividido em cinco etapas:
+
+\begin{itemize}[leftmargin=2.5cm]
 	\item{Deteccão de extremos no espaço-escala -- \emph{Scale-space Extrema Detection};}
 	\item{Localização de pontos -- \emph{Keypoint Localization};}
 	\item{Atribuição de orientação -- \emph{Orientation Assignment};}
@@ -120,12 +123,13 @@ Figura~\ref{fig:lenadog}.
 	\includegraphics[width=0.20\linewidth]{figs/lenaSigma2.png}(c)
  	\includegraphics[width=0.20\linewidth]{figs/lenaDoG.png} (d)
 	\legend{%
-	 Filtro gaussiano aplicado na imagem (a), com $\sigma = 1$, resultando
-  em (b); outra filtragem gaussiana com $\sigma = 2$ (c). Subtrai-se (b)
-  de (c), produzindo o filtro DoG (d).
+	 (a) - filtro gaussiano aplicado na imagem; (b) - resultado do filtro; (c) - outra filtragem gaussiana; (d) - filtro DoG.
 	}
-	\source{O autor
-			(2017)}
+	\note{%
+	O filtro gaussiano é aplicado na imagem, com $\sigma = 1$. Após isso, outra filtragem gaussiana com $\sigma = 2$ é aplicada. Subtrai-se as duas imagens e é obtido o filtro DoG.
+	}
+	\source{O autor,
+			2017}
 	\label{fig:lenadog}
 \end{figure}
 
@@ -182,8 +186,8 @@ $1.5$ em relação à escala do ponto-chave \ref{fig:histogramaOrientado}.
 	\includegraphics[width=0.45\linewidth]{figs/histogramaOrientado.png}
 	\label{fig:histogramaOrientado}
 	\source{
-   	 \citeauthor{jindal2010sift}
-   	 (\citeyear{jindal2010sift}).
+   	 \citeauthor{jindal2010sift},
+   	 \citeyear{jindal2010sift}.
    }
 \end{figure}
 
@@ -203,13 +207,13 @@ representados em forma de vetor para expressar o descritor de pontos-chaves
 \begin{figure} [!h]
 	\centering
 	\caption{Exemplo de um descritor de pontos SIFT}
-	\includegraphics[width=0.45\linewidth]{figs/descritorkeypoint.png}
+	\includegraphics[width=0.45\linewidth]{figs/descritorKeypoint.png}
 	\legend{%
-	Usando uma matriz 2x2 e uma região 8x8
+	Um descritor usando uma matriz 2x2 e uma região 8x8
 	}
 	\source{
-   	 \citeauthor{jindal2010sift}
-   	 (\citeyear{jindal2010sift}).
+   	 \citeauthor{jindal2010sift},
+   	 \citeyear{jindal2010sift}.
    }
 	\label{fig:descritorkeypoint}
 \end{figure}
@@ -242,10 +246,10 @@ pelo menos duas câmeras conhecidas, onde, cada câmera com a projeção do
 	\centering
 	\caption{Exemplo de triangulação}
 	\includegraphics[width=0.45\linewidth]{figs/triangulacao.png}
-	\caption{%
-	Uma triangulação utilizando um ponto qualquer, $X_j$. Onde cada câmera $C_1, C_2, C_3$ possui um \emph{feature} correspondente a cada uma delas, respectivamente, $X_{1j}, X_{2j}, X_{3j}$.
-	}\source{Fergus 
-			(2013)}
+	\legend{%
+	A imagem acima é um exemplo de triangulação utilizando um ponto qualquer, $X_j$. Onde cada câmera $C_1, C_2, C_3$ possui um \emph{feature} correspondente a cada uma delas, respectivamente, $X_{1j}, X_{2j}, X_{3j}$.
+	}\source{Fergus, 
+			2013.}
 	\label{fig:triangulacao}
 \end{figure}
 
